@@ -1,22 +1,12 @@
 package com.spamanage.demo.model;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.Future;
 import lombok.Getter;
 import lombok.Setter;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -31,24 +21,31 @@ public class appointment {
 
     @ManyToOne // muitos agendamentos para um cliente
     @JoinColumn(name = "client_id", nullable = false)
-    private Client client;
+    @NotNull(message = "É obrigatório preencher o campo cliente.")
+    private client client;
 
     @ManyToOne // muitos agendamentos para um serviço
     @JoinColumn(name = "service_id", nullable = false)
-    private Service service;
+    @NotNull(message = "É obrigatório preencher o serviço desejado.")
+    private serviceType service;
 
     @ManyToOne // muitos agendamentos para um terapeuta
     @JoinColumn(name = "therapist_id", nullable = false)
-    private Therapist therapist;
+    @NotNull(message = "É obrigatório preencher o campo terapeuta.")
+    private therapist therapist;
 
+    @NotNull(message = "A data e hora do agendamento não podem ser nulas.")
+    @Future(message = "O agendamento deve ser para uma data e hora futura.")
     @Column(name = "appointment_date_time", nullable = false)
-    private LocalDateTime dateTime;
+    private LocalDateTime appointmentDateTime;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "appointments_status", nullable = false)
-    private ConsultantionStatus status;
+    @NotNull(message = "Agendamento inválido. Tente outra vez.")
+    private appointmentStatus status;
 
     @Column(name = "appointment_notes", nullable = false)
+    @Size(max = 500, message = "As observações não podem ter mais de 500 caracteres.")
     private String appointmentNotes;  
        
 }
