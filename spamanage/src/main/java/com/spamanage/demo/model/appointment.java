@@ -29,15 +29,15 @@ public class appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
-    @ManyToOne // muitos clientes para um
+    @ManyToOne // muitos agendamentos para um cliente
     @JoinColumn(name = "client_id", nullable = false)
     private Client client;
 
-    @ManyToOne // muitos clientes para um 
+    @ManyToOne // muitos agendamentos para um serviço
     @JoinColumn(name = "service_id", nullable = false)
     private Service service;
 
-    @ManyToOne // muitos clientes para um 
+    @ManyToOne // muitos agendamentos para um terapeuta
     @JoinColumn(name = "therapist_id", nullable = false)
     private Therapist therapist;
 
@@ -49,6 +49,6 @@ public class appointment {
     private ConsultantionStatus status;
 
     @Column(name = "appointment_notes", nullable = false)
-    private String appointmentNotes;    
-    
+    private String appointmentNotes;  
+       
 }
