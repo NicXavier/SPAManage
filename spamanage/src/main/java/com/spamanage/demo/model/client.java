@@ -16,6 +16,8 @@ import lombok.Setter;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import org.hibernate.validator.constraints.br.CPF;
+
 @Entity
 @Table(name = "clients")
 @Getter
@@ -33,6 +35,7 @@ public class client {
 
     @Column(nullable = false, unique = true)
     @NotEmpty(message = "O campo CPF é obrigatório.")
+    @CPF(message = "CPF inválido! O formato correto é xxx.xxx.xxx-xx" )
     private String cpf;
 
     @Column(nullable = false, unique = true)
