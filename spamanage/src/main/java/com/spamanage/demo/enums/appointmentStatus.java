@@ -1,4 +1,4 @@
-package com.spamanage.demo.model;
+package com.spamanage.demo.enums;
 
 import org.springframework.core.metrics.ApplicationStartup;
 
