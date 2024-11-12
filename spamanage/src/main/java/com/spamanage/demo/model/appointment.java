@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Table(name = "appointments")
 @Getter
 @Setter
-public class appointment {
+public class Appointment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,12 +22,12 @@ public class appointment {
     @ManyToOne // muitos agendamentos para um cliente
     @JoinColumn(name = "client_id", nullable = false)
     @NotNull(message = "É obrigatório preencher o campo cliente.")
-    private client client;
+    private Client client;
 
     @ManyToOne // muitos agendamentos para um serviço
     @JoinColumn(name = "service_id", nullable = false)
     @NotNull(message = "É obrigatório preencher o serviço desejado.")
-    private serviceType service;
+    private ServiceType service;
 
     @ManyToOne // muitos agendamentos para um terapeuta
     @JoinColumn(name = "therapist_id", nullable = false)

@@ -22,7 +22,7 @@ import org.hibernate.validator.constraints.br.CPF;
 @Table(name = "clients")
 @Getter
 @Setter
-public class client {
+public class Client {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -55,9 +55,9 @@ public class client {
     @NotNull(message = "A data de nascimento não pode ser nula.")
     private LocalDate birthDate;
 
-    public client() {}
+    public Client() {}
 
-    public client(String clientName, String cpf, String email, String phone, String homeAddress, String birthDate) {
+    public Client(String clientName, String cpf, String email, String phone, String homeAddress, String birthDate) {
         this.clientName = clientName;
         this.cpf = cpf;
         this.email = email;
