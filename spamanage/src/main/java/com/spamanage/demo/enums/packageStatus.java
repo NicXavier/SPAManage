@@ -3,7 +3,7 @@ package com.spamanage.demo.enums;
 import lombok.Getter;
 
 @Getter
-public class packageStatus {
+public class PackageStatus {
     ACTIVE("Ativo"),
     INATIVE("Inativo"),
     PROMOTION("Em promoção"),
@@ -11,7 +11,7 @@ public class packageStatus {
 
     private final String description;
 
-    packageStatus(String description) {
+    PackageStatus(String description) {
         this.description = description;
     }
     

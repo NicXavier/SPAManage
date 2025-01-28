@@ -1,11 +1,12 @@
 package com.spamanage.demo.model;
 
-import com.spamanage.demo.enums.packageStatus;
+import com.spamanage.demo.enums.PackageStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.DecimalMin;
 import lombok.Getter;
 import lombok.Setter;
 import java.math.BigDecimal; // classe utilizada para representar valores exatos
@@ -15,7 +16,7 @@ import java.time.LocalDateTime;
 @Table(name = "packages")
 @Getter
 @Setter
-public class servicePackage {
+public class ServicePackage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,13 +38,14 @@ public class servicePackage {
     private Integer packageDurationMinutes;
 
     @Column(nullable = false)
-    @NotEmpty(message = "O campo 'Preço' é obrigatório.")
-    @Size(message = "O preço deve ser um valor positivo")
+    @NotNull(message = "O campo 'Preço' é obrigatório.")
+    @DecimalMin(value = "0.01",message = "O preço deve ser maior que zero.")
     private BigDecimal packagePriceAmount;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private packageStatus packageStatus;
+    @NotNull(message = "O status do pacote é obrigatório.")
+    private PackageStatus packageStatus;
 
     @Column(nullable = false)
     private LocalDateTime packageCreatedDate;

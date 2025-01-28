@@ -3,7 +3,7 @@ package com.spamanage.demo.enums;
 import lombok.Getter;
 
 @Getter
-public class paymentStatus {
+public class PaymentStatus {
     
     PAID("Pago"),
     PENDING("Pendente"),

@@ -17,7 +17,7 @@ public class Appointment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
 
     @ManyToOne // muitos agendamentos para um cliente
     @JoinColumn(name = "client_id", nullable = false)
@@ -32,8 +32,9 @@ public class Appointment {
     @ManyToOne // muitos agendamentos para um terapeuta
     @JoinColumn(name = "therapist_id", nullable = false)
     @NotNull(message = "É obrigatório preencher o campo terapeuta.")
-    private therapist therapist;
+    private Therapist therapist;
 
+    //garantir que o agendamento seja para o futuro
     @NotNull(message = "A data e hora do agendamento não podem ser nulas.")
     @Future(message = "O agendamento deve ser para uma data e hora futura.")
     @Column(name = "appointment_date_time", nullable = false)
@@ -42,7 +43,7 @@ public class Appointment {
     @Enumerated(EnumType.STRING)
     @Column(name = "appointments_status", nullable = false)
     @NotNull(message = "Agendamento inválido. Tente outra vez.")
-    private appointmentStatus status;
+    private AppointmentStatus status;
 
     @Column(name = "appointment_notes", nullable = false)
     @Size(max = 500, message = "As observações não podem ter mais de 500 caracteres.")
